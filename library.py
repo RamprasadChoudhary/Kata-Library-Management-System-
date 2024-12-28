@@ -32,3 +32,6 @@ class Library:
                 book.is_available = True
                 return
         raise ValueError("Book not found in the library.")
+    
+    def view_available_books(self):
+        return [book for book in self.books if book.is_available]
