@@ -25,3 +25,10 @@ class Library:
                 else:
                     raise BookNotAvailable("This book is not available for borrowing.")
         raise ValueError("Book not found in the library.")
+    
+    def return_book(self, isbn):
+        for book in self.books:
+            if book.isbn == isbn:
+                book.is_available = True
+                return
+        raise ValueError("Book not found in the library.")
