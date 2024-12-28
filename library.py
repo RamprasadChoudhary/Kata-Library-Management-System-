@@ -6,6 +6,8 @@ class Book:
         self.year = year
         self.is_available = True
 
+    def __str__(self):
+        return f"{self.title} by {self.author} ({self.year}) [ISBN: {self.isbn}]"
 class BookNotAvailable(Exception):
     pass
 
@@ -14,6 +16,8 @@ class Library:
         self.books = []
 
     def add_book(self, book):
+        if any(existing_book.isbn == book.isbn for existing_book in self.books):
+            raise ValueError("Book with this ISBN already exists")
         self.books.append(book)
     
     def borrow_book(self, isbn):
